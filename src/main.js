@@ -14,7 +14,6 @@ import VueAxios from "vue-axios";
 import axios from "axios";
 
 Vue.use(VueAxios, axios, moment);
-
 Vue.config.productionTip = false;
 
 // import components

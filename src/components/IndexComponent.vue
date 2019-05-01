@@ -1,4 +1,4 @@
-
+// Component achieved
 
 <template>
   <div class="div">
@@ -29,9 +29,9 @@
                 d'ailleurs, voici les dernières statistiques !
               </p>
             </div>
-            <div class="statToday">
-              <div class="more-info">
-                <div class="progress" data-percentage="80">
+            <div v-if="$parent.thereIsDataOnToday()" class="statToday">
+              <div  class="more-info">
+                <div class="progress" :data-percentage="$parent.flowByDay(moment().format('LL')) * 4">
                   <span class="progress-left">
                     <span class="progress-bar"></span>
                   </span>
@@ -40,7 +40,7 @@
                   </span>
                   <div class="progress-value">
                     <div>
-                      {{$parent.flowByDay() * 4}} % 
+                      {{$parent.flowByDay(moment().format('LL')) * 4}} %
                       <br>
                       <span>heureux</span>
                     </div>
@@ -48,14 +48,14 @@
                 </div>
               </div>
               <div class="textResult">
-                <p>Aujourd'hui, tu es plutot...Jovial !</p>
+                <p>Aujourd'hui, tu es plutot...{{$parent.theoricalStateByDay(moment().format('LL'))}} !</p>
               </div>
               <div class="textResult">
-                <!-- {{$parent.user.stats[moment().format('LL')]}} -->
               </div>
             </div>
-
-            <!-- <a href="#" class="link" onclick="readMore()">Read More</a> -->
+            <div v-else class="textResult" style='color:red'>
+                <p>Vous n'avez pas de donnée aujourd'hui </p>
+              </div>
           </div>
         </div>
       </div>
@@ -65,12 +65,16 @@
 <script>
 import moment from 'moment'
 import { isNull } from 'util';
+import { fr } from "vuejs-datepicker/dist/locale";
 export default {
+  created() {
+    moment.locale("fr");
+  },
   data(){
     return {
-      moment:moment,
-
+      moment,
+      fr,
     }
-  }
+    },
 }
 </script>

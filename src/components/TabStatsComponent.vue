@@ -66,7 +66,7 @@
               <!-- <th>{{moment(e.date).format(dateInTab)}}</th> -->
               <th>{{activityDate(e)}}</th>
               <th>{{e.activity}}</th>
-              <th>{{theoricalState(e.rate_challenge, e.rate_level) }}</th>
+              <th>{{$parent.theoricalState(e.rate_challenge, e.rate_level) }}</th>
               <th>{{flowPotential(e)}}/10</th>
               <th>{{e.category}}</th>
               <th>{{e.mood}}</th>
@@ -100,7 +100,7 @@ export default {
   data() {
     return {
       moment,
-      fr,
+      fr, 
       pickedDate: null,
       disabledDates: {},
       highlighted: {}
@@ -197,30 +197,6 @@ export default {
         return moment(this.pickedDate).format("LL") == index;
       }
       return true;
-    },
-    theoricalState(rate_challenge, rate_level) {
-      let res = "";
-      if (rate_challenge > 2 && rate_level == 2) {
-        res = "Stimulé";
-      } else if (rate_challenge > 2 && rate_level < 2) {
-        res = "Anxiété";
-      } else if (rate_challenge == 2 && rate_level < 2) {
-        res = "Inquiétude";
-      } else if (rate_challenge < 2 && rate_level < 2) {
-        res = "Apathie";
-      } else if (rate_challenge < 2 && rate_level == 2) {
-        res = "Ennui";
-      } else if (rate_challenge < 2 && rate_level > 2) {
-        res = "Relaxation";
-      } else if (rate_challenge == 2 && rate_level > 2) {
-        res = "Controle";
-      } else if (rate_challenge > 2 && rate_level > 2) {
-        res = "Flow";
-      } else if (rate_challenge == 2 && rate_level == 2) {
-        res = "Controle";
-      }
-
-      return res;
     },
     flowPotential(element) {
       const flowPotential =
