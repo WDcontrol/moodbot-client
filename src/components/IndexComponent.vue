@@ -70,6 +70,7 @@ export default {
   created() {
     moment.locale("fr");
   },
+  props:['userId'],
   data(){
     return {
       moment,

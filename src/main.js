@@ -25,12 +25,14 @@ const routes = [
   {
     name: "index",
     path: "/",
-    component: IndexComponent
+    component: IndexComponent,
+    props:true
   },
   {
     name: "posts",
     path: "/posts",
-    component: StatsComponent
+    component: StatsComponent,
+    props:true
   }
   //   {
   //     name: "posts",

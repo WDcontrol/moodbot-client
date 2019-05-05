@@ -7,11 +7,11 @@
     >
       <ul class="navbar-nav container">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Accueil</router-link>
+          <router-link :to="{name:'index', params:{userId}}" class="nav-link">Accueil</router-link>
         </li>
 
         <li class="nav-item">
-          <router-link to="/posts" class="nav-link">Stats</router-link>
+          <router-link :to="{name:'posts', params:{userId}}" class="nav-link">Stats</router-link>
         </li>
       </ul>
     </nav>
@@ -36,11 +36,12 @@ export default {
     return{
       user:[],
       globalUser:[],
-      moment:moment
+      moment:moment,
+      userId:this.$route.query.id
     }
   },
   created(){
-    const uri = `https://moodbot-ydays.herokuapp.com/user/${this.$route.query.id}`; // mettre a jour le lien dynamiquement avec ${this.$route.params.id}
+    const uri = `https://moodbot-ydays.herokuapp.com/user/${this.userId}`; // mettre a jour le lien dynamiquement avec ${this.$route.params.id}
     this.axios.get(uri).then(response => {
       this.user = {
         ...response.data,
@@ -57,7 +58,6 @@ export default {
     });
   },
   methods:{
-    test(){return("lel"); },
     theoricalState(rate_challenge, rate_level) {
       let res = "";
       if (rate_challenge > 2 && rate_level == 2) {
