@@ -57,6 +57,7 @@ export default {
     });
   },
   methods:{
+    test(){return("lel"); },
     theoricalState(rate_challenge, rate_level) {
       let res = "";
       if (rate_challenge > 2 && rate_level == 2) {

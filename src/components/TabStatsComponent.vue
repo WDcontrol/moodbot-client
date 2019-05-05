@@ -66,7 +66,7 @@
               <!-- <th>{{moment(e.date).format(dateInTab)}}</th> -->
               <th>{{activityDate(e)}}</th>
               <th>{{e.activity}}</th>
-              <th>{{$parent.theoricalState(e.rate_challenge, e.rate_level) }}</th>
+              <th>{{$root.theoricalState(e.rate_challenge, e.rate_level) }}</th>
               <th>{{flowPotential(e)}}/10</th>
               <th>{{e.category}}</th>
               <th>{{e.mood}}</th>
