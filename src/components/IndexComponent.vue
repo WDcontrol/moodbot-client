@@ -31,7 +31,7 @@
             </div>
             <div v-if="$parent.thereIsDataOnToday()" class="statToday">
               <div  class="more-info">
-                <div class="progress" :data-percentage="$parent.flowByDay(moment().format('LL')) * 4">
+                <div class="progress" :data-percentage="roundedExceptNineteen($parent.flowByDay(moment()) * 4)">
                   <span class="progress-left">
                     <span class="progress-bar"></span>
                   </span>
@@ -40,7 +40,7 @@
                   </span>
                   <div class="progress-value">
                     <div>
-                      {{$parent.flowByDay(moment().format('LL')) * 4}} %
+                      {{$parent.flowByDay(moment()) * 4}} %
                       <br>
                       <span>heureux</span>
                     </div>
@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="textResult">
-                <p>Aujourd'hui, tu es plutot...{{$parent.theoricalStateByDay(moment().format('LL'))}} !</p>
+                <p>Aujourd'hui, tu es plutot...{{$parent.theoricalStateByDay(moment())}} !</p>
               </div>
               <div class="textResult">
               </div>
@@ -69,6 +69,13 @@ import { fr } from "vuejs-datepicker/dist/locale";
 export default {
   created() {
     moment.locale("fr");
+  },
+  methods:{
+    roundedExceptNineteen(number){
+      var roundedNumber = 10*Math.floor(number/10);
+
+      return roundedNumber
+    }
   },
   props:['userId'],
   data(){
